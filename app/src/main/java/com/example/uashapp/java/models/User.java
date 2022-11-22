@@ -2,13 +2,17 @@ package com.example.uashapp.java.models;
 
 import com.example.uashapp.java.enums.RatingEnum;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.util.HashMap;
 
 public class User {
     private static int currentID = 1;
     private final int id;
     private String name;
-    private String password; //hashed
+    private byte[] password; //hashed // TODO: Senha será salva no servidor
+    private long hashKey;
     private String email;
     private int phone;
     private int age;
@@ -55,9 +59,25 @@ public class User {
     public void setName(String newName) {
         this.name = newName;
     }
+    private byte[] hashPassword(String password) {
+        String saltedPassword = password + this.hashKey;
+        MessageDigest md = MessageDigest.getInstance("SHA-256"); // ele não quer parar de reclamar :(
+        md.update((byte) this.hashKey);
+        byte[] encryptedPassword = md.digest(saltedPassword.getBytes(StandardCharsets.UTF_8));
+        return encryptedPassword;
+    }
     public void setPassword(String newPassword) {
-        String encryptedPassword = newPassword;
-        this.password = encryptedPassword;
+        SecureRandom random = new SecureRandom();
+        random.setSeed(System.currentTimeMillis());
+        long salt = random.nextLong();
+        this.hashKey = salt;
+        this.password = hashPassword(newPassword);
+    }
+    public boolean verifyPassword(String password) {
+        if (hashPassword(password) == this.password) {
+            return true;
+        }
+        return false;
     }
     public void setEmail(String newEmail) {
         this.email = newEmail;
