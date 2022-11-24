@@ -4,7 +4,9 @@ import com.example.uashapp.java.enums.RatingEnum;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 public class User {
@@ -15,7 +17,7 @@ public class User {
     private long hashKey;
     private String email;
     private int phone;
-    private int age;
+    private LocalDate bdate;
     private String place;
     private RatingEnum rating;
     private HashMap<Integer, Lavagem> reqServices;
@@ -44,8 +46,8 @@ public class User {
     public int getPhone() {
         return this.phone;
     }
-    public int getAge() {
-        return this.age;
+    public LocalDate getAge() {
+        return this.bdate;
     }
     public String getPlace() {
         return this.place;
@@ -61,7 +63,12 @@ public class User {
     }
     private byte[] hashPassword(String password) {
         String saltedPassword = password + this.hashKey;
-        MessageDigest md = MessageDigest.getInstance("SHA-256"); // ele não quer parar de reclamar :(
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         md.update((byte) this.hashKey);
         byte[] encryptedPassword = md.digest(saltedPassword.getBytes(StandardCharsets.UTF_8));
         return encryptedPassword;
