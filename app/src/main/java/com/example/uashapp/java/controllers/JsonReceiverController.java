@@ -14,14 +14,14 @@ import java.net.URL;
 public class JsonReceiverController extends AsyncTask<String, Void, JSONArray> {
 
     @Override
-    protected JSONArray doInBackground(String... urls) {
+    protected JSONArray doInBackground(String... params) {
 
         URL url;
         HttpURLConnection urlConnection = null;
         String result = "";
 
         try {
-            url = new URL(urls[0]); // Apenas aceita um URL por chamada
+            url = new URL(params[0]); // Apenas aceita um URL por chamada, field[0] = url
             urlConnection = (HttpURLConnection) url.openConnection();
 
             InputStream in = urlConnection.getInputStream();
@@ -35,7 +35,8 @@ public class JsonReceiverController extends AsyncTask<String, Void, JSONArray> {
             }
 
             JSONObject jsonObject = new JSONObject(result);
-            JSONArray resultArray = new JSONArray();
+            String resultInfo = jsonObject.getString(params[1]); // field[1] = campo de pesquisa
+            JSONArray resultArray = new JSONArray(resultInfo);
 
             return resultArray;
 
