@@ -1,12 +1,14 @@
 package com.uash.uash.model;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,17 +25,50 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue (strategy= GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int id;
+    @Column(name= "user_nome")
     private String nome;
+    @Column(name= "user_email")
     private String email;
+    @Column(name= "user_pass")
     private String password;
+    @Column(name= "user_tel")
     private int telefone;
+    @Column(name= "user_dt_nasc")
     private LocalDate dataNasc;
+    @Column(name= "user_loc")
     private String localizacao;
-        @OneToMany( targetEntity=Uasher.class )
-    private Set uasheres;
-    @ManyToMany( targetEntity=Veiculo.class )
-    private Set veiculos;
-    @OneToOne (targetEntity=Uasher.class )
+
+    @OneToMany
+    @JoinColumn(name = "user_uashers_fav")
+    private List<Uasher> uashers;
+
+    @ManyToMany
+    @JoinColumn(name = "user_veic")
+    private List<Veiculo> veiculos;
+
+    public User(int id){
+        this.id = id;
+    }
+
+    public User(){}
+    
+    /* 
+    @OneToOne 
+    @JoinColumn(name = "user_uasher")
     private Uasher uasher;
+*/
+
+ /*   
+    public User(){}
+// conversão de string p data devido erro ao run 
+    public void setDataNasc(String data) {
+        this.dataNasc = LocalDate.parse(data);
+    }
+// conversão de data p string devido ao mesmo erro apontado acima 
+    public String getDataNasc() {
+        return this.dataNasc.toString();
+    }
+     */
 }

@@ -1,13 +1,13 @@
 package com.uash.uash.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.uash.uash.enumerado.RatingOpcao;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,11 +20,17 @@ import lombok.Setter;
 public class Uasher {
     @Id
     @GeneratedValue (strategy= GenerationType.IDENTITY)
+    @Column(name = "uasher_id")
     private int id;
-    private RatingOpcao rating;
+    @Column(name = "uasher_rat")
+    private int rating;
+    @Column(name = "uasher_carta")
     private String cartaConducao;
+    @Column(name = "uasher_mat")
     private boolean material;
+    @Column(name = "uasher_loc")
     private String localizacao;
-    @OneToOne( targetEntity=User.class )
+    @OneToOne
+    @JoinColumn (name = "uasher_user")
     private User user;  
 }
