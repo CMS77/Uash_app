@@ -35,7 +35,7 @@ public class JsonReceiverController extends AsyncTask<String, Void, JSONArray> {
             }
 
             JSONObject jsonObject = new JSONObject(result);
-            String resultInfo = jsonObject.getString(params[1]); // field[1] = campo de pesquisa .
+            String resultInfo = jsonObject.getString(params[1]); // field[1] = campo de pesquisa
             JSONArray resultArray = new JSONArray(resultInfo);
 
             return resultArray;
