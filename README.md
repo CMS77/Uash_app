@@ -2,7 +2,7 @@
 Projeto de desenvolvimento móvel (grupo 9)
 
 
-Documentação disponível em "Documentação", e os recursos necessários para os .mds em "resourses"
+TODA a documentação está disponível em "Documentação", inclusive as da segunda entrega (referir ao README que lá se encontra), e os recursos necessários para os .mds estão em "resourses". Os outros arquivos relevantes do projeto se encontram nas branches descritas abaixo.
 
 
 
