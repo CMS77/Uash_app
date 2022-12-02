@@ -11,4 +11,5 @@ public interface UserView {
     LocalDate getDataNasc();
     String getLocalizacao();
     
+    
 }

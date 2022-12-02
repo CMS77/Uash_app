@@ -32,7 +32,13 @@ public class LavagemController {
         logger.info("Sending all lavagem"); 
         return lavagemRepo.findAllLavagem(); 
     } 
-    
+
+    @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
+    public LavagemView getLavagemById(@PathVariable int id) { 
+        logger.info("Sending lavagem with id " + id); 
+        return lavagemRepo.findLavagemById(id); 
+    }
+
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Response saveLavagem(@RequestBody Lavagem lavagem) { 
       Lavagem newLavagem = lavagemRepo.save(lavagem);
@@ -41,10 +47,11 @@ public class LavagemController {
     }
 
     @PutMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
-    public Response updateLavagem(@RequestBody Lavagem lavagem) { 
-      Integer lavagemId = lavagemRepo.updateLavagem(lavagem);
-        logger.info("Updating lavagem with id " + lavagemId); 
-        return new Response("Updating lavagem with id " + lavagemId, lavagem);
+    public Response updateLavagem(@PathVariable int id, @RequestBody Lavagem lavagem) { 
+        lavagem.setId(id);
+        lavagemRepo.updateLavagem(lavagem);
+        logger.info("Updating lavagem with id " + id); 
+        return new Response("Updating lavagem with id " + id, lavagem);
     }
     
     

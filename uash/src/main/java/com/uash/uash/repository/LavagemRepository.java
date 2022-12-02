@@ -14,11 +14,19 @@ import com.uash.uash.views.LavagemView;
  
 public interface LavagemRepository extends CrudRepository<Lavagem, Integer> {
     @Query(value = "Select lavagem_id as id, lavagem_val as valor, "+
-    "lavagem_tipo as tipoLavagem, lavagem_loc as localizacao, lavagem_hora as horario, lavagem_sta as status, lavagem_rat as rating, veiculo_tipo as veiculoTipo, "+
-    " uasher_id as uasherId from lavagem " + 
-    "INNER JOIN uasher ON lavagem_uasher = uasher_id " +
-    "INNER JOIN veiculo ON lavagem_veic = veiculo_id ", nativeQuery = true)
+        "lavagem_tipo as tipoLavagem, lavagem_loc as localizacao, lavagem_hora as horario, lavagem_sta as status, lavagem_rat as rating, "+
+        "uasher_id as uasherId, veiculo_id as veiculoId from lavagem "+
+        "INNER JOIN uasher ON lavagem_uasher = uasher_id " +
+        "INNER JOIN veiculo ON lavagem_veic = veiculo_id ", nativeQuery = true)
     Iterable<LavagemView> findAllLavagem();
+
+    @Query(value = "Select lavagem_id as id, lavagem_val as valor, "+
+        "lavagem_tipo as tipoLavagem, lavagem_loc as localizacao, lavagem_hora as horario, lavagem_sta as status, lavagem_rat as rating, "+
+        "uasher_id as uasherId, veiculo_id as veiculoId from lavagem " + 
+        "INNER JOIN uasher ON lavagem_uasher = uasher_id " +
+        "INNER JOIN veiculo ON lavagem_veic = veiculo_id " +
+        "where lavagem_id = :lavagemId", nativeQuery = true)
+    LavagemView findLavagemById(@Param("lavagemId") int lavagemId);
 
 
     @Modifying  

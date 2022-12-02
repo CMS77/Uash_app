@@ -32,6 +32,12 @@ public class VeiculosController {
         logger.info("Sending all veiculo"); 
         return veiculoRepo.findAllVeiculo(); 
     } 
+
+    @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
+    public VeiculoView getVeiculoById(@PathVariable int id) { 
+        logger.info("Sending veiculo with id " + id); 
+        return veiculoRepo.findVeiculoById(id);
+    }
     
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Response saveVeiculo(@RequestBody Veiculo veiculo) { 
@@ -41,10 +47,11 @@ public class VeiculosController {
     }
 
     @PutMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
-    public Response updateVeiculo(@RequestBody Veiculo veiculo) { 
-      Integer veiculoId = veiculoRepo.updateVeiculo(veiculo);
-        logger.info("Updating veiculo with id " + veiculoId); 
-        return new Response("Updating veiculo with id " + veiculoId, veiculo);
+    public Response updateVeiculo(@PathVariable int id, @RequestBody Veiculo veiculo) { 
+        veiculo.setId(id);
+        veiculoRepo.updateVeiculo(veiculo);
+        logger.info("Updating veiculo with id " + id); 
+        return new Response("Updating veiculo with id " + id, veiculo);
     }
     
     

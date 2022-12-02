@@ -9,9 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -44,10 +42,11 @@ public class User {
     @JoinColumn(name = "user_uashers_fav")
     private List<Uasher> uashers;
 
+    /* 
     @ManyToMany
     @JoinColumn(name = "user_veic")
     private List<Veiculo> veiculos;
-
+*/
     public User(int id){
         this.id = id;
     }

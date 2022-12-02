@@ -45,7 +45,7 @@ public class Lavagem {
     private Veiculo veiculo;
     @ManyToOne
     @JoinColumn (name = "lavagem_uasher")
-    private Uasher uashers;
+    private Uasher uasher;
     
 }
 

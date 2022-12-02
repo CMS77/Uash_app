@@ -14,4 +14,6 @@ public interface LavagemView {
 
     public int getUasherId();
 
+    public int getVeiculoId();
+
 }
