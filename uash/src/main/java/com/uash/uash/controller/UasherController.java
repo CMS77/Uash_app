@@ -31,6 +31,12 @@ public class UasherController {
         logger.info("Sending all uasher"); 
         return uasherRepo.findAllUasher(); 
     } 
+
+    @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
+    public UasherView getUasherById(@PathVariable int id) { 
+        logger.info("Sending uasher with id " + id); 
+        return uasherRepo.findUasherById(id); 
+    } 
     
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Response saveUasher(@RequestBody Uasher uasher) { 
@@ -40,10 +46,11 @@ public class UasherController {
     }
 
     @PutMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
-    public Response updateUasher(@RequestBody Uasher uasher) { 
-      Integer uasherId = uasherRepo.updateUasher(uasher);
-        logger.info("Updating uasher with id " + uasherId); 
-        return new Response("Updating uasher with id " + uasherId, uasher);
+    public Response updateUasher(@PathVariable int id, @RequestBody Uasher uasher) { 
+        uasher.setId(id);
+        uasherRepo.updateUasher(uasher);
+        logger.info("Updating uasher with id " + id); 
+        return new Response("Updating uasher with id " + id, uasher);
     }
     
     
@@ -51,6 +58,6 @@ public class UasherController {
     public Response deleteUasher(@PathVariable int id) { 
         logger.info("Deleting uasher with id " + id);
         uasherRepo.deleteUasher(id); 
-        return new Response("Deleted user with id " + id, null); 
+        return new Response("Deleted uasher with id " + id, null); 
     }
   }

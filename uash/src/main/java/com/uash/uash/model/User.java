@@ -44,10 +44,11 @@ public class User {
     @JoinColumn(name = "user_uashers_fav")
     private List<Uasher> uashers;
 
+    /* 
     @ManyToMany
     @JoinColumn(name = "user_veic")
     private List<Veiculo> veiculos;
-
+*/
     public User(int id){
         this.id = id;
     }

@@ -13,11 +13,15 @@ import com.uash.uash.views.UasherView;
 //perguntar como faço pra puxar o usuario inteiro
 public interface UasherRepository extends CrudRepository<Uasher, Integer> {
     @Query(value = "Select uasher_id as id, uasher_rat as rating, "+
-    "uasher_carta as cartaConducao, uasher_mat as material, uasher_loc as localizacao, user_id as userId from uasher " +
-    "INNER JOIN usuario ON uasher_user = user_id", nativeQuery = true)
+        "uasher_carta as cartaConducao, uasher_mat as material, uasher_loc as localizacao, user_id as userId from uasher " +
+        "INNER JOIN usuario ON uasher_user = user_id", nativeQuery = true)
     Iterable<UasherView> findAllUasher();
 
-/*
+    @Query(value = "Select uasher_id as id, uasher_rat as rating, "+
+        "uasher_carta as cartaConducao, uasher_mat as material, uasher_loc as localizacao, uasher_user as userId from uasher "+
+        "where uasher_id = :uasherId", nativeQuery = true)
+    UasherView findUasherById(@Param("uasherId") int uasherId);
+
     @Modifying
     @Transactional    
     @Query(value="Insert into uasher "+ 
@@ -25,12 +29,12 @@ public interface UasherRepository extends CrudRepository<Uasher, Integer> {
               "values(:#{#uasher.rating}, :#{#uasher.cartaConducao}, :#{#uasher.material}, :#{#uasher.localizacao})",
                nativeQuery=true) 
     Integer registerUasher(@Param("uasher") Uasher uasher);
- */
+ 
 
     @Modifying  
     @Transactional    
     @Query(value="Update uasher set "+
-        "uasher_rat = :#{#uasher.rating}, uasher_carta = :#{#uasher.cartaConducao} ,uasher_mat = :#{#uasher.material}, uasher_loc = :#{#uasher.localizacao} "+
+        "uasher_rat = :#{#uasher.rating}, uasher_carta = :#{#uasher.cartaConducao}, uasher_mat = :#{#uasher.material}, uasher_loc = :#{#uasher.localizacao} "+
         "where uasher_id = :#{#uasher.id}", nativeQuery=true) 
     Integer updateUasher(@Param("uasher") Uasher uasher);
     

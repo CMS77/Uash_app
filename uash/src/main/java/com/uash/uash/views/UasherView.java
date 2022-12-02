@@ -7,5 +7,5 @@ public interface UasherView {
     boolean getMaterial();
     String getLocalizacao();
 
-    public int getUserId();
+    public Integer getUserId();
 }

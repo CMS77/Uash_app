@@ -34,8 +34,16 @@ public class UserController {
  
     @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Iterable<UserView> getUsers() { 
-        logger.info("Sending all user"); 
+        logger.info("Sending all user");
+        //posso usar os metodos prontos? 
+        //Iterable<User> users = userRepo.findAll();
         return userRepo.findAllUsers(); 
+    } 
+
+    @GetMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
+    public UserView getUserById(@PathVariable int id) { 
+        logger.info("Sending user with id " + id); 
+        return userRepo.findUserById(id); 
     } 
     
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
@@ -46,10 +54,11 @@ public class UserController {
     }
 
     @PutMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
-    public Response updateUser(@RequestBody User user) { 
-      Integer userId = userRepo.updateUser(user, null);
-        logger.info("Updating user with id " + userId); 
-        return new Response("Updating user with id " + userId, user);
+    public Response updateUser(@PathVariable int id, @RequestBody User user) {
+      user.setId(id);
+      userRepo.updateUser(user, user.getDataNasc());
+        logger.info("Updating user with id " + id); 
+        return new Response("Updating user with id " + id, user);
     }
     
     

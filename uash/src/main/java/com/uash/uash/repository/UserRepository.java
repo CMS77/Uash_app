@@ -14,8 +14,15 @@ import com.uash.uash.views.UserView;
  
 public interface UserRepository extends CrudRepository<User, Integer> {
     @Query(value = "Select user_id as id, user_nome as name, "+
-    "user_dt_nasc as dataNasc, user_email as email, user_tel as telefone, user_loc as localizacao from usuario", nativeQuery = true)
+    "user_dt_nasc as dataNasc, user_email as email, user_tel as telefone, user_loc as localizacao from usuario " 
+    /*"INNER JOIN usuario_veiculos ON user_id = user_user_id " //não funciona se deixar esse inner join
+    "INNER JOIN veiculo ON user_id = user_user_id "*/, nativeQuery = true)
     Iterable<UserView> findAllUsers();
+
+    @Query(value = "Select user_id as id, user_nome as name, "+
+        "user_dt_nasc as dataNasc, user_email as email, user_tel as telefone, user_loc as localizacao from usuario "+
+        "where user_id = :userId", nativeQuery = true)
+    UserView findUserById(@Param("userId") int userId);
 
     @Modifying
     @Transactional    
