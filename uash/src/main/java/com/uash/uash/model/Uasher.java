@@ -32,5 +32,9 @@ public class Uasher {
     private String localizacao;
     @OneToOne
     @JoinColumn (name = "uasher_user")
-    private User user;  
+    private User user;
+    
+    public Uasher(int id){
+        this.id = id;
+    }
 }

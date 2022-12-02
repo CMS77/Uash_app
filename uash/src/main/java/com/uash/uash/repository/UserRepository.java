@@ -24,14 +24,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
         "where user_id = :userId", nativeQuery = true)
     UserView findUserById(@Param("userId") int userId);
 
-    @Modifying
-    @Transactional    
-    @Query(value="Insert into usuario "+ 
-              "(user_nome, user_email, user_pass, user_tel, user_dt_nasc, user_loc) "+
-              "values(:#{#user.nome}, :#{#user.email}, :#{#user.password}, :#{#user.telefone}, :#{#user.dataNasc}, :#{#user.localizacao})",
-               nativeQuery=true) 
-    Integer registerUser(@Param("user") User user);
-
     @Modifying  
     @Transactional    
     @Query(value="Update usuario set "+

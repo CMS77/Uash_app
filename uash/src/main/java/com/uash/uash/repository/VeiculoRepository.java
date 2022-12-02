@@ -22,16 +22,6 @@ public interface VeiculoRepository extends CrudRepository<Veiculo, Integer> {
         "where veiculo_id = :veiculoId", nativeQuery = true)
     VeiculoView findVeiculoById(@Param("veiculoId") int veiculoId);
 
-/*
-    @Modifying
-    @Transactional    
-    @Query(value="Insert into veiculo "+ 
-              "(veiculo_tipo, veiculo_mat, veiculo_loc) "+
-              "values(:#{#veiculo.tipo}, :#{#veiculo.matricula}, :#{#veiculo.localizacao})",
-               nativeQuery=true) 
-    Integer registerVeiculo(@Param("veiculo") Veiculo veiculo);
- */
-
     @Modifying  
     @Transactional    
     @Query(value="Update veiculo set "+
