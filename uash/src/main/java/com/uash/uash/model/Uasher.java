@@ -23,7 +23,7 @@ public class Uasher {
     @Column(name = "uasher_id")
     private int id;
     @Column(name = "uasher_rat")
-    private int rating;
+    private Integer rating;
     @Column(name = "uasher_carta")
     private String cartaConducao;
     @Column(name = "uasher_mat")
@@ -33,6 +33,8 @@ public class Uasher {
     @OneToOne
     @JoinColumn (name = "uasher_user")
     private User user;
+
+    public Uasher(){}
     
     public Uasher(int id){
         this.id = id;

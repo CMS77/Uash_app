@@ -47,5 +47,10 @@ public class Lavagem {
     @JoinColumn (name = "lavagem_uasher")
     private Uasher uasher;
     
+    public Lavagem(){}
+    
+    public Lavagem(int id){
+        this.id = id;
+    }
 }
 
