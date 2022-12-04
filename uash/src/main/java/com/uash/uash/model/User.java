@@ -42,32 +42,10 @@ public class User {
     @JoinColumn(name = "user_uashers_fav")
     private List<Uasher> uashers;
 
-    /* 
-    @ManyToMany
-    @JoinColumn(name = "user_veic")
-    private List<Veiculo> veiculos;
-*/
     public User(int id){
         this.id = id;
     }
 
     public User(){}
     
-    /* 
-    @OneToOne 
-    @JoinColumn(name = "user_uasher")
-    private Uasher uasher;
-*/
-
- /*   
-    public User(){}
-// conversão de string p data devido erro ao run 
-    public void setDataNasc(String data) {
-        this.dataNasc = LocalDate.parse(data);
-    }
-// conversão de data p string devido ao mesmo erro apontado acima 
-    public String getDataNasc() {
-        return this.dataNasc.toString();
-    }
-     */
 }
