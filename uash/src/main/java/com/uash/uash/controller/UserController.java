@@ -35,8 +35,6 @@ public class UserController {
     @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Iterable<UserView> getUsers() { 
         logger.info("Sending all user");
-        //posso usar os metodos prontos? 
-        //Iterable<User> users = userRepo.findAll();
         return userRepo.findAllUsers(); 
     } 
 

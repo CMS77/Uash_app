@@ -39,12 +39,19 @@ public class LavagemController {
         return lavagemRepo.findLavagemById(id); 
     }
 
+    @GetMapping(path = "/finduasher/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
+    public Iterable<LavagemView> findLavagemByUasher(@PathVariable int id) { 
+        logger.info("Sending all lavagem of uasher with id " + id); 
+        return lavagemRepo.findLavagemByUasher(id); 
+    } 
+
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Response saveLavagem(@RequestBody Lavagem lavagem) { 
       Lavagem newLavagem = lavagemRepo.save(lavagem);
         logger.info("Saving lavagem"); 
         return new Response("Created lavagem with id " + newLavagem.getId(), newLavagem);
     }
+
 
     @PutMapping(path = "/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Response updateLavagem(@PathVariable int id, @RequestBody Lavagem lavagem) { 

@@ -28,6 +28,11 @@ public interface LavagemRepository extends CrudRepository<Lavagem, Integer> {
         "where lavagem_id = :lavagemId", nativeQuery = true)
     LavagemView findLavagemById(@Param("lavagemId") int lavagemId);
 
+    @Query(value = "Select lavagem_id as id, "+
+        "lavagem_val as valor, lavagem_tipo as tipoLavagem, lavagem_loc as localizacao, lavagem_hora as horario, lavagem_sta as status, lavagem_rat as rating, "+
+        "lavagem_uasher as uasherId from lavagem "+
+        "where lavagem_uasher = :uasherId", nativeQuery = true)
+    Iterable<LavagemView> findLavagemByUasher(@Param("uasherId") int uasherId);
 
     @Modifying  
     @Transactional    

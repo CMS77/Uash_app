@@ -9,11 +9,11 @@ public interface LavagemView {
     String getLocalizacao();
     LocalDate getHorario();
     String getStatus();
-    int getRating();
+    Integer getRating();
     String getVeiculoTipo();
 
-    public int getUasherId();
+    public Integer getUasherId();
 
-    public int getVeiculoId();
+    public Integer getVeiculoId();
 
 }
