@@ -22,6 +22,18 @@ public interface VeiculoRepository extends CrudRepository<Veiculo, Integer> {
         "where veiculo_id = :veiculoId", nativeQuery = true)
     VeiculoView findVeiculoById(@Param("veiculoId") int veiculoId);
 
+    @Query(value = "Select veiculo_id as id, veiculo_tipo as tipo, "+
+        "veiculo_mat as matricula, veiculo_loc as localizacao, users_user_id as userId from veiculo "+
+        "INNER JOIN veiculo_users ON veiculo_veiculo_id = veiculo_id "+
+        "where users_user_id = :userId", nativeQuery = true)
+    VeiculoView findVeiculoByUser(@Param("userId") int userId);
+
+    @Query(value = "Select veiculo_id as id, veiculo_tipo as tipo, "+
+        "veiculo_mat as matricula, veiculo_loc as localizacao, users_user_id as userId from veiculo "+
+        "INNER JOIN veiculo_users ON veiculo_veiculo_id = veiculo_id "+
+        "where veiculo_mat = :matricula", nativeQuery = true)
+    VeiculoView findVeiculoByMatricula(@Param("matricula") String matricula);
+
     @Modifying  
     @Transactional    
     @Query(value="Update veiculo set "+
