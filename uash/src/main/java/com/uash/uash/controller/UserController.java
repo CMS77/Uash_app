@@ -43,6 +43,12 @@ public class UserController {
         logger.info("Sending user with id " + id); 
         return userRepo.findUserById(id); 
     } 
+
+    @GetMapping(path = "/login/{nome}", produces = MediaType.APPLICATION_JSON_VALUE) 
+    public UserView getUserByEmail(@PathVariable String nome) { 
+        logger.info("Sending user with nome " + nome); 
+        return userRepo.findUserByEmail(nome); 
+    }
     
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Response saveUser(@RequestBody User user) { 
