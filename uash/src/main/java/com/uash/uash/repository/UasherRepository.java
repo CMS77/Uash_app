@@ -21,6 +21,11 @@ public interface UasherRepository extends CrudRepository<Uasher, Integer> {
         "where uasher_id = :uasherId", nativeQuery = true)
     UasherView findUasherById(@Param("uasherId") int uasherId);
 
+    @Query(value = "Select uasher_id as id, uasher_rat as rating, "+
+        "uasher_carta as cartaConducao, uasher_mat as material, uasher_loc as localizacao, uasher_user as userId from uasher " +
+        "INNER JOIN usuario ON uasher_user = user_id " +
+        "where user_id = :userId", nativeQuery = true)
+    UasherView findUasherByUser(@Param("userId") int userId);
 
     @Modifying  
     @Transactional    

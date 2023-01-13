@@ -42,6 +42,12 @@ public class UasherController {
         return uasherRepo.findUasherById(id); 
     } 
 
+    @GetMapping(path = "/finduasherfromuser/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE) 
+    public UasherView getUasherByUser(@PathVariable int id) { 
+        logger.info("Sending uasher with id " + id); 
+        return uasherRepo.findUasherByUser(id); 
+    }
+
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE) 
     public Response saveUasher(@RequestBody Uasher uasher) { 
       Uasher newUasher = uasherRepo.save(uasher);

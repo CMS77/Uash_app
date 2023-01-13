@@ -24,6 +24,11 @@ public interface UserRepository extends CrudRepository<User, Integer> {
         "where user_id = :userId", nativeQuery = true)
     UserView findUserById(@Param("userId") int userId);
 
+    @Query(value = "Select user_id as id, user_nome as name, "+
+        "user_dt_nasc as dataNasc, user_email as email, user_pass as senha, user_tel as telefone, user_loc as localizacao from usuario "+
+        "where user_email = :email", nativeQuery = true)
+    UserView findUserByEmail(@Param("email") String email);
+
     @Modifying  
     @Transactional    
     @Query(value="Update usuario set "+
