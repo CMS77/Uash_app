@@ -2,7 +2,9 @@
 Projeto de desenvolvimento móvel (grupo 9)
 
 
-TODA a documentação está disponível em "Documentação", ***inclusive as da segunda entrega*** (referir ao README que lá se encontra), e os recursos necessários para os .mds estão em "resourses". Os outros arquivos relevantes do projeto se encontram nas branches descritas abaixo.
+TODA a documentação está disponível em "Documentação", ***inclusive as da segunda e última entregas*** (referir ao README que lá se encontra), e os recursos necessários para os .mds estão em "resourses". Os outros arquivos relevantes do projeto se encontram nas branches descritas abaixo.
+
+A versão final do servidor se encontra na pasta "uash". A versão final do aplicativo se encontra no ficheiro "Uash App Entrega Final.zip".
 
 
 
@@ -21,4 +23,4 @@ TODA a documentação está disponível em "Documentação", ***inclusive as da 
 
 
 
-**master** - Branch de desenvolvimento do aplicativo para Android "Uash" / *Marco Antônio Camargo*
+**master** - (EM DESUSO) Branch de desenvolvimento do aplicativo para Android "Uash" / *Marco Antônio Camargo*
